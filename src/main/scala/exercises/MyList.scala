@@ -84,8 +84,14 @@ object ListTest extends App {
 
   val intList = new ConsCovList[Int](4,EmptyCovList).add(3).add(2).add(1)
   println(intList.toString)
+ /*
   val f = intList.filter(new MyPredicate[Int] {
     override def is(elem: Int): Boolean = {elem %2 == 0}
+  })
+
+  */
+  val f = intList.filter(new Function1[Int,Boolean] {
+    override def apply(v1:  Int): Boolean = {v1 % 2 == 0}
   })
   println("filtered " + f.toString)
 
@@ -129,7 +135,8 @@ abstract class MyCovList[+A] {
   def isEmpty: Boolean
   def add[B>:A](elem: B): MyCovList[B]
   def map[B](transformer: MyTransformer[A,B]): MyCovList[B]
-  def filter(myPredicate: MyPredicate[A]): MyCovList[A]
+  //def filter(myPredicate: MyPredicate[A]): MyCovList[A]
+  def filter(filter: Function1[A,Boolean]):MyCovList[A]
   def flatMap[B](myTransformer: MyTransformer[A, MyCovList[B]]): MyCovList[B]
 
   def ++[B >: A](l2: MyCovList[B]): MyCovList[B]
@@ -184,10 +191,12 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
     helper(this, "[")
   }
 
+
+  /*
   override def filter(myPredicate: MyPredicate[A]): MyCovList[A] = {
     // this implementation is correct, but i missed the insight about the nature
     // of Cons. filtering is applying the predictate on the head and then filtering the tail
-  /*
+    /*
     @tailrec
     def helper(l: MyCovList[A], accumulation: MyCovList[A]):MyCovList[A] = {
       if (l.isEmpty) accumulation
@@ -207,8 +216,17 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
     if (myPredicate.is(start)) new ConsCovList(start, end.filter(myPredicate))
     else end.filter(myPredicate)
 
-
   }
+
+
+   */
+
+
+  override def filter(f: A => Boolean): MyCovList[A] = {
+    if (f(start)) new ConsCovList(start, end.filter(f))
+    else end.filter(f)
+  }
+
 
   /*
    [1,2] ++ [ 3, 4, 5]
@@ -255,8 +273,8 @@ object EmptyCovList extends MyCovList[Nothing] {
 
   override def add[B >: Nothing](elem: B): MyCovList[B] = new ConsCovList[B](elem, this)
 
-  override def filter(myPredicate: MyPredicate[Nothing]): MyCovList[Nothing] = EmptyCovList
-
+  //override def filter(myPredicate: MyPredicate[Nothing]): MyCovList[Nothing] = EmptyCovList
+  override def filter(filter: Nothing => Boolean): MyCovList[Nothing] = EmptyCovList
   override def map[B](transformer: MyTransformer[Nothing, B]): MyCovList[B] = EmptyCovList
 
   override def flatMap[ B](myTransformer: MyTransformer[Nothing, MyCovList[B]]): MyCovList[B] = EmptyCovList
@@ -279,6 +297,9 @@ trait MyPredicate[-A] {
 trait MyTransformer[-A,B] {
   def transform(input:A): B
 }
+
+//va MyPredicateFunc[A]
+
 /*
 class Even[A ] extends MyPredicate[A] {
   override def is[A](elem: A): Boolean = {

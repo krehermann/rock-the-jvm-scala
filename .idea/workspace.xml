@@ -5,37 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512b9255-8257-450e-bce6-55035d142935" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sbt__org_scala_lang_scala_library_2_13_8_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/udemy-scala-beginners-course-build.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules/udemy-scala-beginners-course.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sbt.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/scala_compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.sbt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/project/build.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/AbstractDataTypes.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/CaseClass.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/Exceptions.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/Generics.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/Inheritance.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/MethodNotations.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/OOBasics.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/Objects.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part2OO/PackingAndImports.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/CalledBy.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/Expressions.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/Functions.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/Recursion.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/StringOps.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/part1Basics/ValuesVariablesTypes.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/playground/Playground.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/WhatIsAFunction.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,6 +21,13 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Package Object" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -70,20 +49,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Exceptions">
-    <configuration name="AbstractDataTypes" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="lectures.Part2OO.AbstractDataTypes" />
-      <module name="udemy-scala-beginners-course" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lectures.Part2OO.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.WhatIsAFunction">
     <configuration name="CaseClass" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="lectures.Part2OO.CaseClass" />
       <module name="udemy-scala-beginners-course" />
@@ -136,13 +102,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="WhatIsAFunction" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.WhatIsAFunction" />
+      <module name="udemy-scala-beginners-course" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lectures.Part3Functional.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.WhatIsAFunction" />
+        <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.Exceptions" />
         <item itemvalue="Application.CaseClass" />
-        <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.Generics" />
-        <item itemvalue="Application.AbstractDataTypes" />
       </list>
     </recent_temporary>
   </component>
