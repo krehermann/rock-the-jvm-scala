@@ -75,31 +75,40 @@ object ListTest extends App {
   assert(l2.head == 4)
   assert(l2.tail == l)
 
-  val covList = new ConsCovList[String]("hi",EmptyCovList)
+  val covList = new ConsCovList[String]("hi", EmptyCovList)
   assert(covList.head == "hi")
   val covList2 = covList.add("my").add("name").add("is")
   assert(covList2.head == "is")
 
   println("a str " + covList2.toString)
 
-  val intList = new ConsCovList[Int](4,EmptyCovList).add(3).add(2).add(1)
+  val intList = new ConsCovList[Int](4, EmptyCovList).add(3).add(2).add(1)
   println(intList.toString)
- /*
+  /*
   val f = intList.filter(new MyPredicate[Int] {
     override def is(elem: Int): Boolean = {elem %2 == 0}
   })
 
   */
-  val f = intList.filter(new Function1[Int,Boolean] {
-    override def apply(v1:  Int): Boolean = {v1 % 2 == 0}
+  val f = intList.filter(new Function1[Int, Boolean] {
+    override def apply(v1: Int): Boolean = {
+      v1 % 2 == 0
+    }
   })
   println("filtered " + f.toString)
 
-  val doubled = intList.map(new MyTransformer[Int,Int] {
-    override def transform(input: Int): Int = {input * 2}
-  })
-  println(doubled.toString)
+  /*
+  val doubled = intList.map( new MyTransformer[Int,Int] {
+        override def transform(input: Int): Int = {input * 2}
+      })
 
+   */
+  val doubled = intList.map(new Function1[Int, Int] {
+    override def apply(v1: Int): Int = 2 * v1
+  })
+  println("new doubled" + doubled.toString)
+
+  /*
   val flattend = intList.flatMap(new MyTransformer[Int, MyCovList[Int]] {
     override def transform(input: Int): MyCovList[Int] = {
       new ConsCovList[Int](input+100, EmptyCovList).add(input)
@@ -108,6 +117,15 @@ object ListTest extends App {
   println(flattend.toString)
 }
 
+   */
+
+  val flattend = intList.flatMap(new Function1[Int, MyCovList[Int]] {
+    override def apply(v1: Int): MyCovList[Int] = {
+      new ConsCovList[Int](v1 + 100, EmptyCovList).add(v1)
+    }
+  })
+  println(flattend.toString)
+}
 // make a generic list
 /*
 abstract class MyCovariantLinkedList[+A] {
@@ -134,11 +152,12 @@ abstract class MyCovList[+A] {
   def tail: MyCovList[A]
   def isEmpty: Boolean
   def add[B>:A](elem: B): MyCovList[B]
-  def map[B](transformer: MyTransformer[A,B]): MyCovList[B]
+  def map[B](transformer: A => B): MyCovList[B]
   //def filter(myPredicate: MyPredicate[A]): MyCovList[A]
   def filter(filter: Function1[A,Boolean]):MyCovList[A]
-  def flatMap[B](myTransformer: MyTransformer[A, MyCovList[B]]): MyCovList[B]
+  //def flatMap[B](myTransformer: MyTransformer[A, MyCovList[B]]): MyCovList[B]
 
+  def flatMap[B](transformer: Function1[A,MyCovList[B]]): MyCovList[B]
   def ++[B >: A](l2: MyCovList[B]): MyCovList[B]
 
 }
@@ -152,13 +171,13 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
 
   override def add[B >: A](elem: B): MyCovList[B] = new ConsCovList(elem, this)
 
-  override def map[B](transformer: MyTransformer[A, B]): MyCovList[B] = {
+  override def map[B](transformer: A => B): MyCovList[B] = {
     // this implementation is correct, but very verbose.
     // i missed the key insight that map is fundamentally generative when operating
     // on a Cons because, mapping breaksdown to transforming the first element
     // and then mapping the remaining tail.
 
-    new ConsCovList[B](transformer.transform(this.start), this.end.map(transformer))
+    new ConsCovList[B](transformer(this.start),end.map(transformer))
     /*
     @tailrec
     def helper(input:MyCovList[A], accumulation:MyCovList[B]): MyCovList[B] = {
@@ -236,7 +255,12 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
   override def ++[B>:A]( l2:MyCovList[B]): MyCovList[B] = {
     new ConsCovList(start, end ++ l2)
   }
-  override def flatMap[B](myTransformer: MyTransformer[A, MyCovList[B]]): MyCovList[B] = {
+
+  override def flatMap[B](transformer: A => MyCovList[B]): MyCovList[B] = {
+    transformer(this.start) ++ end.flatMap(transformer)
+  }
+
+/*  override def flatMap[B](myTransformer: MyTransformer[A, MyCovList[B]]): MyCovList[B] = {
   // once more i missed the boat. the implementation is correct, but we can simplify by taking advantage
     // of the structure of Cons. flatmap is a new Cons with the head transformed and concated to the
     // flatmap of the tail
@@ -262,7 +286,11 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
 
      */
   }
+ */
+
 }
+
+
 
 object EmptyCovList extends MyCovList[Nothing] {
   override def head: Nothing = ???
@@ -275,10 +303,10 @@ object EmptyCovList extends MyCovList[Nothing] {
 
   //override def filter(myPredicate: MyPredicate[Nothing]): MyCovList[Nothing] = EmptyCovList
   override def filter(filter: Nothing => Boolean): MyCovList[Nothing] = EmptyCovList
-  override def map[B](transformer: MyTransformer[Nothing, B]): MyCovList[B] = EmptyCovList
+  override def map[B](transformer: Nothing => B): MyCovList[B] = EmptyCovList
 
-  override def flatMap[ B](myTransformer: MyTransformer[Nothing, MyCovList[B]]): MyCovList[B] = EmptyCovList
-
+  //override def flatMap[ B](myTransformer: MyTransformer[Nothing, MyCovList[B]]): MyCovList[B] = EmptyCovList
+  override def flatMap[B](transformer: Nothing => MyCovList[B]): MyCovList[B] = EmptyCovList
   override def ++[B >: Nothing](l2: MyCovList[B]): MyCovList[B] = l2
 }
 
