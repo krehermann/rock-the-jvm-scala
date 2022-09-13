@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512b9255-8257-450e-bce6-55035d142935" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyCons.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/AnonFunc.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/HOFandCurries.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/exercises/MyCons.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyCons.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/WhatIsAFunction.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/WhatIsAFunction.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,7 +59,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.AnonFunc">
+  <component name="RunManager" selected="Application.HOFandCurries">
     <configuration name="AnonFunc" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.AnonFunc" />
       <module name="udemy-scala-beginners-course" />
@@ -72,8 +73,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CaseClass" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="lectures.Part2OO.CaseClass" />
+    <configuration name="Exceptions" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="lectures.Part2OO.Exceptions" />
       <module name="udemy-scala-beginners-course" />
       <extension name="coverage">
         <pattern>
@@ -85,12 +86,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Exceptions" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="lectures.Part2OO.Exceptions" />
+    <configuration name="HOFandCurries" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.HOFandCurries" />
       <module name="udemy-scala-beginners-course" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="lectures.Part2OO.*" />
+          <option name="PATTERN" value="lectures.Part3Functional.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -126,11 +127,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.AnonFunc" />
-        <item itemvalue="Application.WhatIsAFunction" />
+        <item itemvalue="Application.HOFandCurries" />
         <item itemvalue="Application.ListTest" />
+        <item itemvalue="Application.WhatIsAFunction" />
+        <item itemvalue="Application.AnonFunc" />
         <item itemvalue="Application.Exceptions" />
-        <item itemvalue="Application.CaseClass" />
       </list>
     </recent_temporary>
   </component>

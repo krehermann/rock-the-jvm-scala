@@ -1,39 +1,30 @@
 package exercises
 
 object MyCons extends App {
+  val l = new Cons(1, Empty)
+  assert(l.head == 1)
+  assert(l.tail == Empty)
 
+  val l2 = l.add(4)
+  assert(l2.head == 4)
+  assert(l2.tail == l)
 }
 
 
 abstract class MyList {
   /*
-
   head => first element of list
-
   tail => remainder of list
-
   isEmpty => is list empty
-
   add(int) => new list with this element
-
   toString => string representation of the list
-
    */
-
-
-
   def head(): Int
-
   def tail: Int
-
   //  def tail(elems: Int) MyList
-
   def isEmpty: Boolean
-
   def append(n: Int): MyList
-
   def toString(): String
-
 }
 
 
@@ -41,29 +32,12 @@ abstract class MyList {
 class SimpleListImpl(a: Array[Int]) extends MyList {
 
   override def head(): Int = a(0)
-
-
-
   override def tail: Int = a(a.length-1)
-
-
-
   override def isEmpty: Boolean = a.length == 0
-
-
-
   override def append(n: Int): MyList = {
-
     new SimpleListImpl(a.appended(n))
-
   }
-
-
-
   override def toString: String = a.toString
-
-
-
 }
 
 

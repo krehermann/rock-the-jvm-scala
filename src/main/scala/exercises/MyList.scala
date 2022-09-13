@@ -4,13 +4,7 @@ import javax.swing.plaf.multi.MultiListUI
 import scala.annotation.tailrec
 
 object ListTest extends App {
-  val l = new Cons(1, Empty)
-  assert(l.head == 1)
-  assert(l.tail == Empty)
 
-  val l2 = l.add(4)
-  assert(l2.head == 4)
-  assert(l2.tail == l)
 
   val covList = new ConsCovList[String]("hi", EmptyCovList)
   assert(covList.head == "hi")
@@ -22,23 +16,15 @@ object ListTest extends App {
   val intList = new ConsCovList[Int](4, EmptyCovList).add(3).add(2).add(1)
   println(intList.toString)
 
-  val f = intList.filter(new Function1[Int, Boolean] {
-    override def apply(v1: Int): Boolean = {
-      v1 % 2 == 0
-    }
-  })
+  val f = intList.filter( v => v % 2 == 0 )
   println("filtered " + f.toString)
 
-  val doubled = intList.map(new Function1[Int, Int] {
-    override def apply(v1: Int): Int = 2 * v1
-  })
+  val doubled = intList.map(v1 => 2 * v1)
   println("new doubled" + doubled.toString)
 
-  val flattend = intList.flatMap(new Function1[Int, MyCovList[Int]] {
-    override def apply(v1: Int): MyCovList[Int] = {
+  val flattend = intList.flatMap(v1 =>
       new ConsCovList[Int](v1 + 100, EmptyCovList).add(v1)
-    }
-  })
+  )
   println(flattend.toString)
 }
 
@@ -49,8 +35,11 @@ abstract class MyCovList[+A] {
   def add[B>:A](elem: B): MyCovList[B]
   def map[B](transformer: A => B): MyCovList[B]
   //def filter(myPredicate: MyPredicate[A]): MyCovList[A]
-  def filter(filter: Function1[A,Boolean]):MyCovList[A]
-  def flatMap[B](transformer: Function1[A,MyCovList[B]]): MyCovList[B]
+//  def filter(filter: Function1[A,Boolean]):MyCovList[A]
+
+  def filter(filter: A=> Boolean): MyCovList[A]
+
+  def flatMap[B](transformer: A => MyCovList[B]): MyCovList[B]
   def ++[B >: A](l2: MyCovList[B]): MyCovList[B]
 
 }

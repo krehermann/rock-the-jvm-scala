@@ -44,6 +44,13 @@ object WhatIsAFunction extends App{
       }
     }
   }
+
+  val specialMultiplier: (Int => (Int => Int)) = (v1: Int) => (v2: Int) => v1 * v2
+
+
+  val multBy10 =specialMultiplier(10)
+  assert(multBy10(4) == 40)
+
   assert(nestedFuncMultiplier(3).apply(4)== 12)
   val multBy5 = nestedFuncMultiplier(5)
   assert(multBy5(7) == 35)
