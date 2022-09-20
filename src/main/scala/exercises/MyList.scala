@@ -33,8 +33,10 @@ object ListTest extends App {
   intList.foreach(_ => {y = y+1})
   println("len", y)
 
-  val unsorted = new ConsCovList[Int](1,EmptyCovList).add(2).add(3)
+  //2 13 3 5 1
+  val unsorted = new ConsCovList[Int](1,EmptyCovList).add(5).add(3).add(13).add(2)
 
+  println( "unsorted " + unsorted.toString)
   val x = unsorted.sort((x:Int, y:Int) => x < y)
   println("unsort -> sorted " + x.toString)
 }
@@ -57,6 +59,8 @@ abstract class MyCovList[+A] {
 
   def length(): Int
   def sort(f: (A,A) => Boolean): MyCovList[A]
+  def reverse():MyCovList[A]
+
 }
 
 class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
@@ -117,10 +121,26 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
     })
     y
   }
+  override def reverse():MyCovList[A] = {
+    def helper(l: MyCovList[A], result: MyCovList[A]): MyCovList[A] = {
+      if (l.isEmpty) result
+      else helper(l.tail, result.add(l.head))
+    }
+    helper(this, EmptyCovList)
+  }
   override def sort(f: (A, A) => Boolean): MyCovList[A] = {
     def merge(l1: MyCovList[A], l2: MyCovList[A], result: MyCovList[A]): MyCovList[A] = {
-      if (l2.isEmpty) l1
-      else if (l1.isEmpty) l2
+      println("merge l " + l1 + " merge r " + l2 )
+      println("result " + result.toString)
+      if (l2.isEmpty && l1.isEmpty) result.reverse()
+      else if (l1.isEmpty) {
+        merge(EmptyCovList, l2.tail, result.add(l2.head))
+      }
+      else if (l2.isEmpty) {
+        merge(l1.tail, EmptyCovList, result.add(l1.head))
+      }
+
+        // add puts element in the front, so pick the larger one
       else if (f(l1.head, l2.head) == true) {
         val temp = result.add(l1.head)
         merge(l1.tail, l2, temp)
@@ -132,7 +152,8 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
 
     def partition(l: MyCovList[A]): (MyCovList[A], MyCovList[A]) = {
       def helper(temp: MyCovList[A], firstHalf: MyCovList[A], secondHalf: MyCovList[A]): (MyCovList[A], MyCovList[A]) = {
-        if (firstHalf.length() == temp.length() / 2) (firstHalf, temp)
+        println("first half " +  firstHalf.toString + ", "  +firstHalf.length() + ".   temp"+  temp.toString + ", ", temp.length() )
+        if (firstHalf.length() == l.length() / 2 || temp.isEmpty) (firstHalf, temp)
         else {
           //accumulation.add(temp.head)
           helper(temp.tail, firstHalf.add(temp.head), EmptyCovList)
@@ -151,14 +172,37 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
 
 
 
-      helper(l, EmptyCovList, EmptyCovList)
+      //helper(l, EmptyCovList, EmptyCovList)
     }
-
+/*
     //val seed = new ConsCovList[A](EmptyCovList,EmptyCovList)
-    val p1 = partition(this)
-    merge(p1._1, p1._2, EmptyCovList)
-    //merge(EmptyCovList,EmptyCovList,EmptyCovList)
+    val x,y = (partition(p1._1), partition(p1._2))
 
+    val k = partition(p1._1)
+    val j = partition(k._1)
+
+    if (this.length()==1) this
+    else
+
+ */
+
+    def mergesort(l:MyCovList[A]): MyCovList[A] = {
+
+
+      val p1 = partition(l)
+      if (p1._1.length() == 1 && p1._1.length() >= p1._2.length()) merge(p1._1, p1._2, EmptyCovList)
+      else {
+        val left = mergesort(p1._1)
+        println("left " + left.toString)
+        val right = mergesort(p1._2)
+        println("right " + right.toString)
+        merge(left, right, EmptyCovList)
+      }
+    }
+    //println("p1 " + p1._1.toString, ", ", p1._2.toString)
+    //merge(p1._1, p1._2, EmptyCovList)
+    //merge(EmptyCovList,EmptyCovList,EmptyCovList)
+    mergesort(this)
   }
 }
 
@@ -180,5 +224,7 @@ object EmptyCovList extends MyCovList[Nothing] {
   override def sort(f: (Nothing, Nothing) => Boolean): MyCovList[Nothing] = ???
 
   override def length(): Int = 0
+
+  override def reverse(): MyCovList[Nothing] = ???
 }
 
