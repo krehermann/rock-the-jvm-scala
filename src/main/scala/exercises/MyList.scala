@@ -42,6 +42,15 @@ object ListTest extends App {
 
   val ziped = intList.zipWith(intList, (x:Int ,y:Int) => x +y )
   println("intlist ", intList.toString, " zipped ", ziped.toString)
+
+  // for comprehension
+  val strList = new ConsCovList[String]("a", EmptyCovList).add("b").add("c").add("d")
+  val forComp = for {
+    i <- intList
+    s <- strList
+  } yield s + i
+
+  println(forComp)
 }
 
 abstract class MyCovList[+A] {
