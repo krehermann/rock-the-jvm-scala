@@ -39,6 +39,9 @@ object ListTest extends App {
   println( "unsorted " + unsorted.toString)
   val x = unsorted.sort((x:Int, y:Int) => x < y)
   println("unsort -> sorted " + x.toString)
+
+  val ziped = intList.zipWith(intList, (x:Int ,y:Int) => x +y )
+  println("intlist ", intList.toString, " zipped ", ziped.toString)
 }
 
 abstract class MyCovList[+A] {
@@ -60,6 +63,8 @@ abstract class MyCovList[+A] {
   def length(): Int
   def sort(f: (A,A) => Boolean): MyCovList[A]
   def reverse():MyCovList[A]
+
+  def zipWith[B>:A] (myCovList: MyCovList[B], f:(B,A)=>B ):MyCovList[B]
 
 }
 
@@ -155,7 +160,6 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
         println("first half " +  firstHalf.toString + ", "  +firstHalf.length() + ".   temp"+  temp.toString + ", ", temp.length() )
         if (firstHalf.length() == l.length() / 2 || temp.isEmpty) (firstHalf, temp)
         else {
-          //accumulation.add(temp.head)
           helper(temp.tail, firstHalf.add(temp.head), EmptyCovList)
         }
       }
@@ -164,28 +168,7 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
         else {
           helper(l, EmptyCovList, EmptyCovList)
         }
-        /*
-        val x = new ConsCovList[A](l.head,EmptyCovList)
-        val y = x.add(x.tail.head)
-        y.add(y.tail.head)
-        */
-
-
-
-      //helper(l, EmptyCovList, EmptyCovList)
     }
-/*
-    //val seed = new ConsCovList[A](EmptyCovList,EmptyCovList)
-    val x,y = (partition(p1._1), partition(p1._2))
-
-    val k = partition(p1._1)
-    val j = partition(k._1)
-
-    if (this.length()==1) this
-    else
-
- */
-
     def mergesort(l:MyCovList[A]): MyCovList[A] = {
 
 
@@ -199,11 +182,15 @@ class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
         merge(left, right, EmptyCovList)
       }
     }
-    //println("p1 " + p1._1.toString, ", ", p1._2.toString)
-    //merge(p1._1, p1._2, EmptyCovList)
-    //merge(EmptyCovList,EmptyCovList,EmptyCovList)
     mergesort(this)
   }
+
+  override def zipWith[B >: A](myCovList: MyCovList[B], f: (B, A) => B): MyCovList[B] = {
+    if (myCovList.length() != this.length()) throw new IllegalArgumentException("length must match")
+    else new ConsCovList[B](f(myCovList.head, this.start), this.tail.zipWith(myCovList.tail, f))
+
+  }
+
 }
 
 
@@ -226,5 +213,7 @@ object EmptyCovList extends MyCovList[Nothing] {
   override def length(): Int = 0
 
   override def reverse(): MyCovList[Nothing] = ???
+
+  override def zipWith[B >: Nothing](myCovList: MyCovList[B], f: (B, Nothing) => B): MyCovList[B] = EmptyCovList
 }
 

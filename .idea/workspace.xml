@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512b9255-8257-450e-bce6-55035d142935" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyList.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
