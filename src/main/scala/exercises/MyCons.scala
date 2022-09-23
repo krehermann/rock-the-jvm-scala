@@ -3,7 +3,7 @@ package exercises
 object MyCons extends App {
   val l = new Cons(1, Empty)
   assert(l.head == 1)
-  assert(l.tail == Empty)
+  assert(l.tail == Void)
 
   val l2 = l.add(4)
   assert(l2.head == 4)
