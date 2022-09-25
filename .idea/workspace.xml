@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512b9255-8257-450e-bce6-55035d142935" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/exercises/Maybe.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/Sequences.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/exercises/MyCons.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/exercises/MyCons.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,14 +31,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.scala" root0="SKIP_HIGHLIGHTING" />
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -52,12 +43,12 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
-}]]></component>
-  <component name="RunManager" selected="Application.MaybeTest">
+}</component>
+  <component name="RunManager" selected="Application.Sequences">
     <configuration name="HOFandCurries" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.HOFandCurries" />
       <module name="udemy-scala-beginners-course" />
@@ -110,8 +101,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="WhatIsAFunction" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.WhatIsAFunction" />
+    <configuration name="Sequences" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.Sequences" />
       <module name="udemy-scala-beginners-course" />
       <extension name="coverage">
         <pattern>
@@ -125,11 +116,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Sequences" />
         <item itemvalue="Application.MaybeTest" />
         <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.MapFlatMapFilter" />
         <item itemvalue="Application.HOFandCurries" />
-        <item itemvalue="Application.WhatIsAFunction" />
       </list>
     </recent_temporary>
   </component>
