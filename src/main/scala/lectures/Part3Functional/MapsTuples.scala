@@ -17,13 +17,21 @@ object MapsTuples extends App {
   val nnet = net.friend(alice, bob)
   println(nnet.get("alice"))
 
+  val unfriend = nnet.unfriend(alice, bob)
+  println("unfriended " + unfriend)
+
+  val conn = nnet.friend(bob,kim)
+  println("alice -> kim" , conn.connected(alice,kim))
+  println("alice -> bob" , conn.connected(alice,bob))
+  println("alice -> george" , conn.connected(alice,george))
+
 
 }
 
   case class Person(val Name:String, Friends: List[Person]= List()) {
     def friend(p:Person): Person = {
-      val newFriends = Friends.appended(p)
-      new Person(Name, newFriends)
+      if (Friends.length == 0) Person(Name, List(p))
+      else Person(Name, Friends.appended(p))
     }
     def unfriend(p:Person): Person = {
       val newFriends = Friends.filter(_.Name != p.Name)
@@ -60,4 +68,53 @@ case class SocialNetwork(people: List[Person])  {
 
     //(n:String, f:List[Person]) => new Person(n,f)))
   }
-}
+
+  def unfriend(p1: Person, p2: Person): SocialNetwork = {
+    val updatedNet = network.map( pair => {
+      if (pair._1== p1.Name) pair._1 -> pair._2.filter(friend => friend.Name != p2.Name)
+      else  if (pair._1== p2.Name) pair._1 -> pair._2.filter(friend => friend.Name != p1.Name)
+      else pair._1 -> pair._2
+    })
+
+    SocialNetwork(updatedNet.toList.map(pair => new Person(pair._1,pair._2)))
+  }
+
+  def maxFriends(): Person = {
+    people.foldLeft(people.head)((x:Person, p: Person) => {
+      if (x.Friends.length > p.Friends.length) x
+      else p
+    })
+  }
+  def noFriends(): Int = {
+    people.count(p => p.Friends.length == 0)
+  }
+
+  def connected(p1:Person, p2:Person): Boolean = {
+    val seed = people.filter(p => p.Name == p1.Name)
+    if (seed.length == 0) false
+    else {
+      val isConnect: Seq[Boolean] = for {
+        friend <- seed.head.Friends
+      } yield {
+        friend.Name == p2.Name
+      }
+
+      if (isConnect.filter(_ == true).length > 0) true
+
+    }
+  }
+
+    def connected2(p1:Person, p2:Person): Boolean = {
+      if (connected(p1,p2)) true
+      else
+      {
+        val conn: Seq[Boolean] = for {
+
+          friend <- p1.Friends
+        } yield {
+          connected(friend, p2)
+        }
+        conn.filter(_ == true).length > 0
+      }
+    }
+  }
