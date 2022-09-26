@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="512b9255-8257-450e-bce6-55035d142935" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/Sequences.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/lectures/Part3Functional/MapsTuples.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -48,20 +48,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Sequences">
-    <configuration name="HOFandCurries" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.HOFandCurries" />
-      <module name="udemy-scala-beginners-course" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="lectures.Part3Functional.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="Application.MapsTuples">
     <configuration name="ListTest" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="exercises.ListTest" />
       <module name="udemy-scala-beginners-course" />
@@ -77,6 +64,19 @@
     </configuration>
     <configuration name="MapFlatMapFilter" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.MapFlatMapFilter" />
+      <module name="udemy-scala-beginners-course" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="lectures.Part3Functional.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapsTuples" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="lectures.Part3Functional.MapsTuples" />
       <module name="udemy-scala-beginners-course" />
       <extension name="coverage">
         <pattern>
@@ -116,11 +116,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MapsTuples" />
         <item itemvalue="Application.Sequences" />
         <item itemvalue="Application.MaybeTest" />
         <item itemvalue="Application.ListTest" />
         <item itemvalue="Application.MapFlatMapFilter" />
-        <item itemvalue="Application.HOFandCurries" />
       </list>
     </recent_temporary>
   </component>
