@@ -90,6 +90,23 @@ case class SocialNetwork(people: List[Person])  {
   }
 
   def connected(p1:Person, p2:Person): Boolean = {
+
+    def bfs(target: Person, toSearch: Set[Person], found: Set[Person]): Boolean = {
+     // if (found.isEmpty) false
+      println("bfs: target, search, found", target, toSearch, found)
+      if (found.contains(target)) true
+      else if (toSearch.isEmpty) false
+      else {
+        val newFound = found  ++ toSearch.toSet
+        //val newSearch = toSearch.flatMap(p => p.Friends)
+        val pToSearch = toSearch.filter(p => network.getOrElse(p.Name,List()).length > 0) ///this.people.filter(p => toSearch.contains(p)
+        println("people to search", pToSearch)
+        val newFriends = pToSearch.flatMap(p => p.Friends)
+        println("new friends", newFriends)
+        bfs(target, newFriends.toSet, newFound)
+      }
+    }
+    /*
     val seed = people.filter(p => p.Name == p1.Name)
     if (seed.length == 0) false
     else {
@@ -102,9 +119,13 @@ case class SocialNetwork(people: List[Person])  {
       if (isConnect.filter(_ == true).length > 0) true
 
     }
+    */
+     val seed = people.filter(p => p.Name == p1.Name)
+    println("seed", seed, "p1", p1)
+     bfs(p2, seed.head.Friends.toSet, Set())
   }
 
-    def connected2(p1:Person, p2:Person): Boolean = {
+ /*   def connected2(p1:Person, p2:Person): Boolean = {
       if (connected(p1,p2)) true
       else
       {
@@ -117,4 +138,6 @@ case class SocialNetwork(people: List[Person])  {
         conn.filter(_ == true).length > 0
       }
     }
+
+  */
   }
