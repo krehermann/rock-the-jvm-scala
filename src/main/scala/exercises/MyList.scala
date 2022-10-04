@@ -77,7 +77,7 @@ abstract class MyCovList[+A] {
 
 }
 
-class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
+case class ConsCovList[+A](start:A, end: MyCovList[A]) extends MyCovList[A] {
   override def head: A = start
   override def tail: MyCovList[A] = end
   override def isEmpty: Boolean = false
